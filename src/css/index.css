@@ -1,0 +1,21 @@
+#app {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+nav {
+  padding: 20px 0 20px 0;
+}
+
+/* ._layer_::after,
+._group_::after { */
+  /* .rstcustom__node::after { */
+  /* content: 'x';
+  float: right;
+  cursor: pointer;
+  color: red; */
+  /* border: 1px solid red; */
+  /* border-radius: 5px;padding: 1px; */
+  /* transform: translateY(-24px); */
+  /* padding-right: 5px; */
+/* } */

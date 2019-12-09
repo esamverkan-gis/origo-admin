@@ -1,0 +1,122 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background-color: linen;
+    }
+
+    #text {
+      color: blue;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <textarea id="text">
+
+  </textarea>
+
+  <script>
+
+
+    function prettifyJson(jsonStr) {
+      try {
+        let obj = JSON.parse(jsonStr);
+        return JSON.stringify(obj, undefined, 4);
+      }
+      catch (err) {
+        console.log("Could not prettify JSON, not valid JSON.");
+        return jsonStr;
+      }
+    }
+
+    const CIRKEL = `
+{
+  "circle": {
+    "radius": 6,
+    "stroke": {
+      "color": "rgba(0,0,0,1)",
+      "width": 2
+    },
+    "fill": {
+      "color": "rgba(255,255,255,0.5)"
+    }
+  }
+}`;
+
+    const LINJE = `
+      {
+        "stroke": {
+          "color": "rgba(0,0,0,1)",
+          "width": 2
+        }
+      }`;
+
+    const YTA = `
+      {
+        "stroke": {
+          "color": "rgba(0,0,0,1)",
+          "width": 2
+        },
+        "fill": {
+          "color": "rgba(255,255,255,0.5)"
+        }
+      }`;
+
+    const GEOSERVER_SYMBOL = `
+      {
+        "legendIsMultiRow": false,
+        "icon": {
+          "src": "URL_TILL_WMS?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=WORKSPACE:LAGERNAMN&FORMAT=image%2Fgif"
+        }
+      }`;
+
+    const ARCGIS_SYMBOL = `
+      {
+        "icon": {
+          "src": "URL_TILL_WMS?SERVICE=WMS&VERSION=1.1.0&REQUEST=GetLegendGraphic&format=image/png&LAYER=LAGERNAMN"
+        }
+      }`;
+
+    const BAKGRUNDSKARTA1 = `
+      {
+        "image": {
+          "src": "img/png/farg.png"
+        }
+      }`;
+
+
+    const BAKGRUNDSKARTA2 = `
+      {
+        "image": {
+          "src": "img/png/orto.png"
+        }
+      }`;
+
+    var el = document.getElementById('text');
+    var CIRKEL_P = prettifyJson(CIRKEL);
+    var LINJE_P = prettifyJson(LINJE);
+    var YTA_P = prettifyJson(YTA);
+    var GEOSERVER_SYMBOL_P = prettifyJson(GEOSERVER_SYMBOL);
+    var ARCGIS_SYMBOL_P = prettifyJson(ARCGIS_SYMBOL);
+    var BAKGRUNDSKARTA1_P = prettifyJson(BAKGRUNDSKARTA1);
+    var BAKGRUNDSKARTA2_P = prettifyJson(BAKGRUNDSKARTA2);
+
+    el.value = '\nPUNKT/CIRKEL\n' + CIRKEL_P +
+      '\n\nLINJE\n' + LINJE_P + 
+      '\n\nYTA\n' + YTA_P +
+      '\n\nFÖR ATT HÄMTA SYMBOL FRÅN GEOSERVER ("legendIsMultiRow": true för tematiska lager). Byt ut URL_TILL_WMS, WORKSPACE och LAGERNAMN.\n' + GEOSERVER_SYMBOL_P +
+      '\n\nFÖR ATT HÄMTA SYMBOL FRÅN ARCGIS SERVER. Byt ut URL_TILL_WMS och LAGERNAMN\n' + ARCGIS_SYMBOL_P +
+      '\n\nFÖR BAKGRUNDSKARTA I FÄRG\n' + BAKGRUNDSKARTA1_P +
+      '\n\nFÖR BAKGRUNDSKARTA ORTOFOTO\n' + BAKGRUNDSKARTA2_P;
+
+  </script>
+
+</body>
+
+</html>
