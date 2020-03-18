@@ -3,6 +3,8 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpackBundleAnalyzer = require("webpack-bundle-analyzer");
+const conf = require('./conf/config');
+const configOptions = Object.assign({}, conf['adminAPI']);
 
 process.env.NODE_ENV = "production";
 
@@ -27,7 +29,7 @@ module.exports = {
     new webpack.DefinePlugin({
       // This global makes sure React is built in prod mode.
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-      "process.env.API_URL": JSON.stringify("http://oemap2-test.decerno.se")
+      "process.env.API_URL": JSON.stringify(configOptions.url)
     }),
     new HtmlWebpackPlugin({
       template: "src/index.html",

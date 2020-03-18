@@ -1,6 +1,6 @@
 const baseUrl = process.env.API_URL;
 
-export const serverUrl = baseUrl + '/admin';
+export const serverUrl = baseUrl;
 
 function json(response) {
   return response.json();
